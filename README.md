@@ -1,2 +1,2 @@
-# react-native-todo
-basic react-native to-do list
+# ToDo-ReactNative
+A simple ToDo application created using ReactNative.

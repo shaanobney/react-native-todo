@@ -9,45 +9,31 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator
 } from 'react-native';
+import SplashView from './src/SplashView';
+import ListView from './src/ListView';
 
-export default class AwesomeNativeBase extends Component {
+
+export default class todolist extends Component {
+  renderScene(route, navigator) {
+   if(route.name == 'SplashView') {
+     return <SplashView navigator={navigator} />
+   }
+   if(route.name == 'ListView') {
+     return <ListView navigator={navigator} />
+   }
+}
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
+      <Navigator
+         style={{ flex:1 }}
+         initialRoute={{ name: 'SplashView' }}
+         renderScene={ this.renderScene }
+         configureScene={(route, routeStack) => Navigator.SceneConfigs.FloatFromBottom} />
     );
   }
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-AppRegistry.registerComponent('AwesomeNativeBase', () => AwesomeNativeBase);
+AppRegistry.registerComponent('todolist', () => todolist);
